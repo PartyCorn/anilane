@@ -28,7 +28,7 @@ function update() {
     document.getElementById(`anime365-search`).href = `https://smotret-anime.com/catalog/search?q=${title}`;
     document.getElementById(`aniu-search`).href = `https://aniu.ru/search/?q=${title}&page=1`;
 
-    text = `<a href="/imggen/?title=${title}&ep=${episode}&image=${image}" target="_blank">Превью можно скачать здесь</a><div id="result"><b>${title}</b> ${episode>0?" <i>("+episode+" серия)</i>":""}<br><br>`;
+    text = `<a href="/anilane/imggen/?title=${title}&ep=${episode}&image=${image}" target="_blank">Превью можно скачать здесь</a><div id="result"><b>${title}</b> ${episode>0?" <i>("+episode+" серия)</i>":""}<br><br>`;
     if (dubbers) text += `<b>🎙 Роли озвучивали:</b> ${dubbers}<br><br>`;
     if (sounders) text += `<b>🔊 Тайминг и работа со звуком:</b> ${sounders}<br><br>`;
     if (subbers) text += `<b>💬 Перевод на русский:</b> ${subbers}<br><br>`;
