@@ -1,0 +1,25 @@
+body {
+    background-color: #10121c;
+    color: #ffffff;
+}
+input, textarea, select {
+    background-color: #f6e8e0 !important;
+    color: #2c1e31 !important;
+}
+a {
+    text-decoration: none;
+    color: #36c5f4;
+}
+.fa {
+    font-size: 30px;
+    color: var(--color);
+    border: solid 2px var(--color);
+    border-radius: 5px;
+    padding: 3px 10px;
+    cursor: pointer;
+    transition-duration: .2s;
+}
+.fa-search {
+    font-size: 14px;
+    color: #36c5f4;
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AniLane | Генератор текста</title>
+    <link rel="shortcut icon" href="../image/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../style/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="../js/textgen.js" defer></script>
+    <style>
+        #content {
+            margin: 0 auto;
+            padding: 20px;
+            width: 70%;
+            max-width: 1200px;
+        }
+        .div-left {
+            flex: 60%;
+        }
+        .div-right {
+            flex: 40%;
+        }
+        #result {
+            background-color: #2c1e31;
+            border-radius: 7px;
+            margin-top: 10px;
+            padding: 5px 10px;
+            position: relative;
+        }
+        #copyButton {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 20px;
+        }
+        #myToast {
+            margin: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row" id="content">
+        <div class="div-left col">
+            <h2>Форма</h2>
+            <form>
+                <div class="row row-cols-auto">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Название</label>
+                            <input type="text" class="form-control" id="title">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="episode" class="form-label">Серия</label>
+                            <input type="number" class="form-control" id="episode" value="0" min="0">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="type" class="form-label">Тип</label>
+                            <select class="form-select" id="type">
+                                <option selected>Сериал</option>
+                                <option>Фильм</option>
+                                <option>Спешл</option>
+                                <option>OVA</option>
+                                <option>ONA</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="dub_type" class="form-label">Тип озвучки</label>
+                            <select class="form-select" id="dub_type">
+                                <option selected>Закадровый</option>
+                                <option>Дублированный</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="dub_var" class="form-label">Вариант озвучки</label>
+                            <select class="form-select" id="dub_var">
+                                <option selected>Многоголосый</option>
+                                <option>Одноголосый</option>
+                                <option>Двухголосый</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="dubbers" class="form-label">Дабберы</label>
+                            <input type="text" class="form-control" id="dubbers" placeholder="Даббер 1, Даббер 2...">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="sounders" class="form-label">Звукорежиссёры</label>
+                            <input type="text" class="form-control" id="sounders" placeholder="Звукарь 1, Звукарь 2...">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="subbers" class="form-label">Переводчики</label>
+                            <input type="text" class="form-control" id="subbers" placeholder="Переводчик 1, Переводчик 2...">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="mb-3">
+                            <label for="image" class="form-label">Ссылка на картинку</label>
+                            <input type="url" class="form-control" id="image">
+                        </div>
+                    </div>
+                </div>
+                <div class="row row-cols-auto mb-3">
+                    <div class="col">
+                        <label for="kodik" class="form-label"><a href="https://bd.kodik.biz/serials?category=anime" target="_blank">Kodik</a></label>
+                        <input type="url" class="form-control" id="kodik">
+                    </div>
+                    <div class="col">
+                        <label for="anime365" class="form-label"><a href="https://smotret-anime.com/" target="_blank">Anime365</a><a href="https://smotret-anime.com/catalog/search?q=" target="_blank" id="anime365-search" title="Быстрый поиск в Anime365 по названию"><span class="fa fa-search"></span></a></label>
+                        <input type="url" class="form-control" id="anime365">
+                    </div>
+                    <div class="col">
+                        <label for="animelib" class="form-label"><a href="https://animelib.me/" target="_blank">AnimeLib</a></label>
+                        <input type="url" class="form-control" id="animelib">
+                    </div>
+                    <div class="col">
+                        <label for="aniu" class="form-label"><a href="https://aniu.ru/" target="_blank">Aniu</a><a href="https://aniu.ru/search/?q=&page=1" target="_blank" id="aniu-search" title="Быстрый поиск в Aniu по названию"><span class="fa fa-search"></span></a></label>
+                        <input type="url" class="form-control" id="aniu">
+                    </div>
+                    <div class="col">
+                        <label for="anixart" class="form-label">Anixart</label>
+                        <input type="url" class="form-control" id="anixart">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="div-right col">
+            <h2 class="mb-3">Результат</h2>
+            <div id="preview"><span style="color: #999999">Начните заполнять форму...</span></div>
+        </div>
+    </div>
+    <div id="myToast" class="toast position-fixed text-bg-success top-0 end-0 p-3" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="false">
+        <div class="d-flex">
+            <div class="toast-body">
+                Текст скопирован!
+            </div>
+            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Закрыть"></button>
+        </div>
+    </div>
+</body>
+</html>
