@@ -144,6 +144,7 @@ function displaySuggestions(suggestions, suggestionContainer, inputField) {
             suggestionContainer.style.display = "none";
 
             inputField.focus();
+            update();
         });
 
         suggestionContainer.appendChild(suggestionElement);
