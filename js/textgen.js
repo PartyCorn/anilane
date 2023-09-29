@@ -3,7 +3,7 @@ function formatString(input) {
     let relevantPart = delimiterIndex !== -1 ? input.slice(0, delimiterIndex) : input;
     let cleanedInput = relevantPart.replace(/[^a-zA-Zа-яА-Я -]/g, '').replaceAll('-', '_');
     let words = cleanedInput.split(' ').filter(word => word !== '');
-    let formattedString = words.join('_').toLowerCase();
+    let formattedString = words.join('_').toLowerCase().slice(0, 46);
 
     return formattedString;
 }
